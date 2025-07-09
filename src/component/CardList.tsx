@@ -12,7 +12,7 @@ export const CardList : React.FC<{}> = () => {
             setCardList([...cardList, ...cardData])
         }
     }, [cardData])
-    return (<Body>
+    return (<Body> 
         {
             cardList.map((card, index) => {
                 return(<CardPanel key={index} data-testid='cardPanel'>
