@@ -45,6 +45,7 @@ jobs:
 
       - name: npm install (Windows, with y)
         if: runner.os == 'Windows'
+        shell: bash
         run: echo "y" | npm install
 
       - name: Run tests 
