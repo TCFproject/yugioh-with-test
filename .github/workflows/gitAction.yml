@@ -39,17 +39,18 @@ jobs:
         with:
           node-version: '20' # Choisis ta version ici
           cache: 'npm'
+      - name: npm install (Linux)
+        if: runner.os == 'Linux'
+        run: npm install
 
-      - name: Install dependencies
-        run: |
-          if [ "${{ runner.os }}" = "Windows" ]; then
-            echo "Windows detected"
-            echo "y" | npm install
-          else
-            echo "Linux or macOS detected"
-            npm install
-          fi
-      
+      - name: npm install (Windows, with y)
+        if: runner.os == 'Windows'
+        run: echo "y" | npm install
+
+      - name: npm install (Mac)
+        if: runner.os == 'macOS'
+        run: npm install
+
       - name: Run tests 
         run: npm test
   
