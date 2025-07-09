@@ -57,7 +57,7 @@ jobs:
             fi
             npm install --no-audit --no-fund
       
-      - name: Run tests
+      - name: Run tests 
         run: npm test
   
   deploy:
