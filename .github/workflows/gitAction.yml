@@ -11,10 +11,12 @@ env:
 jobs:
   install:
     if: github.event_name == 'push'
+
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+
     steps:
       - uses: actions/checkout@v2
 
@@ -23,6 +25,12 @@ jobs:
 
   test:
     needs: install
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
     steps: 
       - uses: actions/checkout@v2
       - name: Run tests
@@ -30,6 +38,12 @@ jobs:
   
   deploy:
     needs: test
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        
     steps:
       - uses: actions/checkout@v2
       - name: Build
