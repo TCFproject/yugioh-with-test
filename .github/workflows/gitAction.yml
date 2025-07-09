@@ -39,7 +39,7 @@ jobs:
           cache: 'npm'
       - name: Reinstall
         run: npm install
-        
+
       - name: Run tests
         run: npm test
   
@@ -53,8 +53,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Reinstall
+        run: npm install
+        
       - name: Build
         run: npm run build
+        
       - name: Gh Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
