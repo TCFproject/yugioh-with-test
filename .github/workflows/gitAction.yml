@@ -37,7 +37,9 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-
+      - name: Reinstall
+        run: npm install
+        
       - name: Run tests
         run: npm test
   
