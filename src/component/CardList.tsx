@@ -5,7 +5,7 @@ import useCard from '../hooks/useCard';
 import {Card} from "../type/CardType";
 
 export const CardList : React.FC<{}> = () => {
-    const {cardData, cardLoading, cardError} = useCard();
+    const {cardData} = useCard();
     const [cardList, setCardList] = useState<Card[]>([])
     useEffect(() => {
         if (cardData) { 
