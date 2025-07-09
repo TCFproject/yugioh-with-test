@@ -7,21 +7,39 @@ interface PrintCard{
 }
 export const CardData: React.FC<PrintCard> = ({prop}) => {
     return <>
-        <img src='' alt='CardImg'/>
+        <CardImg src={prop.card_images[0].image_url} data-testid='CardImg' alt='CardImg'/>
         <DataSide data-testid="cardData">
-            <div data-testid='cardName'>
+            <CardName data-testid='cardName'>
                 {prop.name}
-            </div>
-            <div data-testid='cardCaract'>
-
-            </div>
-            <div data-testid='cardEffect'>
+            </CardName>
+            <CardCaract data-testid='cardCaract'>
+                
+            </CardCaract>
+            <CardEffect data-testid='cardEffect'>
                 {prop.desc}
-            </div>
+            </CardEffect>
         </DataSide>
     </>
 }
 
+const CardImg = styled.img`
+    width: 30vw;
+    margin: 2vh;
+`;
+const CardName = styled.div`
+    margin: 2vh;
+    padding: 2vh;
+    border-style: groove;
+`;
+const CardCaract = styled.div`
+    margin: 3vh;
+    height: 30vh;
+`;
+const CardEffect = styled.div`
+    border-style: inset;
+    margin: 2vh;
+    height: 20vh;
+`;
 const TestStyle = styled.div`
     border-style: solid;
 `

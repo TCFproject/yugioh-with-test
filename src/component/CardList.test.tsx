@@ -14,7 +14,7 @@ test('De bonne dimension', async () => {
   dims.forEach(dim => {
     expect(dim).toHaveStyle({height: "80vh", display: "flex"}); 
   })
-})
+}) 
 
 /*test("Récupère les données des cartes", () => {
   render(<CardList/>)

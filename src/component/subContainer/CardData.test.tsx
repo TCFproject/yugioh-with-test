@@ -94,10 +94,13 @@ jest.mock("../../hooks/useCard")
         
         const CardImg = screen.getByTestId('CardImg');
         expect(CardImg).toHaveStyle({width: "30vw", margin: "2vh"})
+
         const cardName = screen.getByTestId('cardName');
         expect(cardName).toHaveStyle({margin: "2vh","padding": "2vh", "border-style": "groove"})
+        
         const cardEffect = screen.getByTestId('cardEffect');
         expect(cardEffect).toHaveStyle({"border-style": "inset", "margin": "2vh", "height": "20vh"})
+        
         const cardCaract = screen.getByTestId('cardCaract');
         expect(cardCaract).toHaveStyle({"margin": "3vh", "height": "30vh"})
     })
