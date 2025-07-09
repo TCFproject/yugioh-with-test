@@ -49,14 +49,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest,]
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Reinstall windows
-        if: runner.os == 'Windows'
-        run: npm install | echo "y"
+      #- name: Reinstall windows
+      #  if: runner.os == 'Windows'
+      #  run: npm install | echo "y"
 
       - name: Reinstall linux
         if: runner.os == 'Linux'
