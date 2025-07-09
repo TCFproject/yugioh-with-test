@@ -54,12 +54,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Reinstall
+      - name: Reinstall windows
+        if: runner.os == "Windows"
+        run: npm install | echo "y"
+
+      - name: Reinstall linux
+        if: runner.os == "Linux"
         run: npm install
         
       - name: Build
         run: npm run build
-        
+
       - name: Gh Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
