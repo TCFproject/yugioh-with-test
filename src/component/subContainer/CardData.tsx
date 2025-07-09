@@ -47,6 +47,3 @@ const DataSide = styled(TestStyle)`
     display: flex;
     flex-direction: column;
 `
-const Card = styled(TestStyle)`
-    
-`

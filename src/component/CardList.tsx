@@ -11,7 +11,6 @@ export const CardList : React.FC<{}> = () => {
         if (cardData) { 
             setCardList([...cardList, ...cardData])
         }
-        console.log("cardList:",cardList)
     }, [cardData])
     return (<Body>
         {
