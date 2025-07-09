@@ -33,6 +33,12 @@ jobs:
 
     steps: 
       - uses: actions/checkout@v2
+
+      - name: install macos package
+        run: | 
+          curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
+          brew install node
+          
       - name: Run tests
         run: npm test
   
@@ -43,7 +49,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        
+
     steps:
       - uses: actions/checkout@v2
       - name: Build
