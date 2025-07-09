@@ -8,6 +8,7 @@ on:
 
 env:
   MOCK_APP_NAME: Yu-Gi-Oh Test
+
 jobs:
   install:
     if: github.event_name == 'push'
@@ -20,8 +21,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: install package
-        run: npm install
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
 
   test:
     needs: install
@@ -37,19 +44,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Choisis ta version ici
+          node-version: '20'
           cache: 'npm'
-      - name: npm install (Linux)
-        if: runner.os == 'Linux'
-        run: npm install
 
-      - name: npm install (Windows, with y)
-        if: runner.os == 'Windows'
-        run: echo "y" | npm install
-
-      - name: npm install (Mac)
-        if: runner.os == 'macOS'
-        run: npm install
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
 
       - name: Run tests 
         run: npm test
@@ -64,8 +63,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Build
         run: npm run build
+
       - name: Gh Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
