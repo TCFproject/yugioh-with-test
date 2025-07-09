@@ -25,34 +25,20 @@ jobs:
 
   test:
     needs: install
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-
-    steps: 
+    steps:
       - uses: actions/checkout@v2
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Choisis ta version ici
+          node-version: '20'
           cache: 'npm'
-      - name: npm install (Linux)
-        if: runner.os == 'Linux'
-        run: npm install
 
-      - name: npm install (Windows, with y)
-        if: runner.os == 'Windows'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-        shell: bash
-        run: echo "y" | npm install
-
-      - name: Run tests 
+      - name: Run tests
         run: npm test
   
   deploy:
