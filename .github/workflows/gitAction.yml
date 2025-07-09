@@ -40,22 +40,23 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
           brew install node
 
-      - name: re-install
+      - name: Re-install according to OS
+        shell: bash
         run: |
-          if ["$RUNNER_OS" == "Linux"]; then
+          echo "Runner OS: ${{ runner.os }}"
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            echo "Linux detected"
             npm install
-          elif ["$RUNNER_OS" == "Windows"]; then
-            npm install --no-audit --no-fund
-          elif ["$RUNNER_OS" == "macOS"]; then
-            if ! command -v node >/dev/null 2>&1; then
-              echo "Node.js n’est pas installé. Installation avec Homebrew…"
-              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-              eval "$(/opt/homebrew/bin/brew shellenv)"
-              brew install node
-            else
-              echo "Node.js est déjà installé."
-            fi
-            npm install --no-audit --no-fund
+          elif [ "${{ runner.os }}" = "macOS" ]; then
+            echo "macOS detected"
+            npm install
+          elif [ "${{ runner.os }}" = "Windows" ]; then
+            echo "Windows detected"
+            echo "y" | npm install
+          else
+            echo "Unknown OS: ${{ runner.os }}"
+            exit 1
+          fi
       
       - name: Run tests 
         run: npm test
