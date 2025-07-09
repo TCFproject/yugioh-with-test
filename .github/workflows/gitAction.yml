@@ -39,7 +39,9 @@ jobs:
         run: | 
           curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
           brew install node
-          
+      - name: re-install
+        run: npm install
+        
       - name: Run tests
         run: npm test
   
