@@ -34,28 +34,20 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
 
-      - name: install macos package
-        if: runner.os == 'macOS'
-        run: | 
-          curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
-          brew install node
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Choisis ta version ici
+          cache: 'npm'
 
-      - name: Re-install according to OS
-        shell: bash
+      - name: Install dependencies
         run: |
-          echo "Runner OS: ${{ runner.os }}"
-          if [ "${{ runner.os }}" = "Linux" ]; then
-            echo "Linux detected"
-            npm install
-          elif [ "${{ runner.os }}" = "macOS" ]; then
-            echo "macOS detected"
-            npm install
-          elif [ "${{ runner.os }}" = "Windows" ]; then
+          if [ "${{ runner.os }}" = "Windows" ]; then
             echo "Windows detected"
             echo "y" | npm install
           else
-            echo "Unknown OS: ${{ runner.os }}"
-            exit 1
+            echo "Linux or macOS detected"
+            npm install
           fi
       
       - name: Run tests 
